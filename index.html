@@ -368,6 +368,7 @@ html[data-theme="light"] .row-dark { display: none; }
 html[data-theme="light"] .row-light { display: block; }
 html[data-theme="light"] .row-light .slide { background: #0c0f13 !important; }
 html[data-theme="light"] .row-light .slide-full { background: #0c0f13 !important; }
+html[data-theme="light"] .row-light .texture-slide { background: transparent !important; }
 
 /* Slide */
 .slide { height: 540px; border-radius: 14px; overflow: hidden; position: relative; flex-shrink: 0; }
@@ -849,7 +850,7 @@ footer {
   line-height: 1.7;
   max-width: 320px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1280px) {
   .mobile-block { display: flex; }
   body > *:not(.mobile-block) { display: none !important; }
 }
@@ -1766,8 +1767,8 @@ function buildSnippetSection(s, sNum) {
 
   const texturePlaceholder = `<div class="ratio-section"><div class="ratio-section-title">Texture</div><div id="texture-${s.id}" style="color:rgba(255,255,255,0.30);font-size:13px;font-family:'Nunito Sans',sans-serif;">Loading…</div></div>`;
 
-  const darkContent  = wideDark  + otherDark  + vars + texturePlaceholder;
-  const lightContent = wideLight + otherLight + vars + texturePlaceholder;
+  const darkContent  = wideDark  + otherDark  + vars;
+  const lightContent = wideLight + otherLight + vars;
 
   return `<div class="snip-section" id="sec-${s.id}">
     <div class="snip-heading">
@@ -1776,6 +1777,7 @@ function buildSnippetSection(s, sNum) {
     </div>
     <div class="row-dark">${darkContent}</div>
     <div class="row-light">${lightContent}</div>
+    ${texturePlaceholder}
   </div>`;
 }
 
@@ -1787,7 +1789,7 @@ function renderTextureSlides(s, img1, img2, img3) {
   return `
     <div class="slide-wrap" style="margin-bottom:28px;">
       <div class="ratio-tag">16:9</div>
-      <div class="slide slide-full" style="background:#0c0f13;">
+      <div class="slide slide-full texture-slide" style="background:#0c0f13;">
         <img class="texture-bg" src="${img1}" alt="">
         <div class="frame">${s.screen}</div>
       </div>
@@ -1795,14 +1797,14 @@ function renderTextureSlides(s, img1, img2, img3) {
     <div class="slides-row">
       <div class="slide-wrap">
         <div class="ratio-tag">3:2</div>
-        <div class="slide slide-32" style="background:#0c0f13;">
+        <div class="slide slide-32 texture-slide" style="background:#0c0f13;">
           <img class="texture-bg" src="${img2}" alt="">
           <div class="frame">${s.screen}</div>
         </div>
       </div>
       <div class="slide-wrap">
         <div class="ratio-tag">1:1</div>
-        <div class="slide slide-11" style="background:#0c0f13;">
+        <div class="slide slide-11 texture-slide" style="background:#0c0f13;">
           <img class="texture-bg" src="${img3}" alt="">
           <div class="frame">${s.screen}</div>
         </div>
@@ -1824,24 +1826,27 @@ async function buildAllTextureSections() {
       if (!sec) return;
       const shuffled = [...imgs].sort(() => Math.random() - 0.5);
       const [img1, img2, img3] = shuffled;
-      sec.innerHTML = renderTextureSlides(s, img1, img2, img3);
+      const lightScreen = s.screenLight || makeLight(s.screen);
+      const lightS = { screen: lightScreen };
+      sec.innerHTML = `<div class="row-dark">${renderTextureSlides(s, img1, img2, img3)}</div><div class="row-light">${renderTextureSlides(lightS, img1, img2, img3)}</div>`;
     });
 
-    // Web App texture sections — 16:9 only (wide), two per screen: one wide + one texture
+    // Web App texture sections — 16:9 only
     waKeys.forEach(k => {
       const sec = document.getElementById('texture-' + k);
       if (!sec) return;
       const shuffled = [...imgs].sort(() => Math.random() - 0.5);
       const img1 = shuffled[0];
-      const waHtml = WA_SCREENS[k].html;
-      sec.innerHTML = `<div class="slide-wrap" style="margin-bottom:28px;">
+      const waHtml      = WA_SCREENS[k].html;
+      const waHtmlLight = makeLight(waHtml);
+      const makeWaSlide = (html) => `<div class="slide-wrap" style="margin-bottom:28px;">
         <div class="ratio-tag">16:9</div>
-        <div class="slide slide-full" style="background:#0c0f13;overflow:hidden;">
+        <div class="slide slide-full texture-slide" style="overflow:hidden;">
           <img class="texture-bg" src="${img1}" alt="">
-          <div class="webapp-scale" style="position:absolute;top:50%;left:50%;width:1440px;transform-origin:center center;">${waHtml}</div>
+          <div class="webapp-scale" style="position:absolute;top:50%;left:50%;width:1440px;transform-origin:center center;">${html}</div>
         </div>
       </div>`;
-
+      sec.innerHTML = `<div class="row-dark">${makeWaSlide(waHtml)}</div><div class="row-light">${makeWaSlide(waHtmlLight)}</div>`;
     });
   } catch(e) {
     document.querySelectorAll('[id^="texture-"]').forEach(el => {
@@ -2610,8 +2615,9 @@ function buildWebAppSection(key, sNum) {
   const texturePlaceholder = `<div class="ratio-section"><div class="ratio-section-title">Texture</div><div id="texture-${key}" style="color:rgba(255,255,255,0.30);font-size:13px;font-family:'Nunito Sans',sans-serif;">Loading…</div></div>`;
   return `<div class="snip-section" id="sec-${key}">
     <div class="snip-heading"><span class="snip-title">${s.title}</span><span class="snip-num">${sNum}</span></div>
-    <div class="row-dark">${wideDark}${texturePlaceholder}</div>
-    <div class="row-light">${wideLight}${texturePlaceholder}</div>
+    <div class="row-dark">${wideDark}</div>
+    <div class="row-light">${wideLight}</div>
+    ${texturePlaceholder}
   </div>`;
 }
 

@@ -12,7 +12,7 @@
 <title>ORTH Interface</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Source+Serif+4:ital,wght@1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Source+Serif+4:ital,wght@1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'Cocogoose';
@@ -104,21 +104,34 @@ nav.scrolled {
 .nav-links a.nav-links a.active { color: #fff; }
 
 .nav-label-static { font-family: 'Nunito Sans', sans-serif; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.60); }
-.btn-nav {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.16);
-  padding: 8px 22px;
-  border-radius: 100px;
-  font-size: 15px;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 600;
+/* ── THEME TOGGLE SWITCH ── */
+.theme-toggle {
+  width: 44px;
+  height: 26px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.12);
+  position: relative;
   cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s;
-  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.25s ease;
 }
-.btn-nav:hover { background: rgba(255,255,255,0.14); }
+.theme-toggle-knob {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+html[data-theme="light"] .theme-toggle {
+  background: #647f5d;
+}
+html[data-theme="light"] .theme-toggle-knob {
+  transform: translateX(18px);
+  background: #fff;
+}
 
 .nav-right { display: flex; align-items: center; gap: 24px; }
 
@@ -351,12 +364,10 @@ nav.scrolled {
 /* Theme rows */
 .row-dark { display: block; }
 .row-light { display: none; }
-/* LIGHT MODE CSS LOCKED — Head of Brand only
 html[data-theme="light"] .row-dark { display: none; }
 html[data-theme="light"] .row-light { display: block; }
 html[data-theme="light"] .row-light .slide { background: #0c0f13 !important; }
 html[data-theme="light"] .row-light .slide-full { background: #0c0f13 !important; }
-*/
 
 /* Slide */
 .slide { height: 540px; border-radius: 14px; overflow: hidden; position: relative; flex-shrink: 0; }
@@ -385,7 +396,7 @@ html[data-theme="light"] .row-light .slide-full { background: #0c0f13 !important
 }
 .variations-grid { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
 .variation-wrap { display: flex; flex-direction: column; gap: 10px; }
-.variation-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+.variation-label { font-family: 'DM Sans', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
 .variation-wrap .slide { zoom: 0.5; }
 
 /* Placeholder page */
@@ -464,7 +475,7 @@ footer {
   color: rgba(255,255,255,0.60);
 }
 
-/* DM Mono for snip sub-nav */
+/* DM Sans for snip sub-nav */
 
 .texture-bg {
   position: absolute;
@@ -597,9 +608,9 @@ footer {
 .chat-scroll{flex:1;overflow-y:auto;padding:24px 0 0;background:var(--ink-950);}
 .chat-scroll::-webkit-scrollbar{display:none;}
 .chat-inner{max-width:720px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:10px;}
-.msg-ts{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--ink-500);text-align:right;}
+.msg-ts{font-family:'DM Sans',monospace;font-size:10.5px;color:var(--ink-500);text-align:right;}
 .msg-user{background:var(--ink-700);border-radius:16px 16px 4px 16px;padding:9px 12px;font-size:12px;color:var(--ink-100);line-height:1.55;}
-.msg-orth-ts{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--ink-500);margin-bottom:5px;}
+.msg-orth-ts{font-family:'DM Sans',monospace;font-size:10.5px;color:var(--ink-500);margin-bottom:5px;}
 .msg-body{font-size:12px;color:var(--ink-100);line-height:1.65;}
 .msg-body strong{color:white;font-weight:700;}
 .msg-body .sh{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:white;margin:13px 0 5px;}
@@ -744,7 +755,7 @@ footer {
 .wx-card-value.green{color:var(--sage-400);}
 .wx-chart{flex:1;width:100%;display:block;overflow:visible;}
 .wx-axis{display:flex;justify-content:space-between;padding:4px 10px 10px;}
-.wx-axis span{font-size:9px;color:var(--ink-600);font-family:'DM Mono',monospace;}
+.wx-axis span{font-size:9px;color:var(--ink-600);font-family:'DM Sans',monospace;}
 .wx-sunrise-inner{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:4px;padding:0 14px 12px;}
 .wx-sunrise-main{font-size:22px;font-weight:300;color:var(--ink-100);}
 .wx-sunrise-sub{font-size:13px;color:var(--ink-300);font-weight:500;}
@@ -842,6 +853,184 @@ footer {
   .mobile-block { display: flex; }
   body > *:not(.mobile-block) { display: none !important; }
 }
+/* ══════════════════════════════════════════════════════════
+   LIGHT MODE — WEB APP OVERRIDES
+   Applied to .row-light .webapp only; page chrome stays dark
+══════════════════════════════════════════════════════════ */
+
+/* ── App shell ── */
+html[data-theme="light"] .row-light .webapp .app-card { background: var(--stone-200); }
+/* Icon nav matches outer frame — same as app-card background */
+html[data-theme="light"] .row-light .webapp .icon-nav  { background: var(--stone-200); }
+
+/* ── Icon nav buttons — dark enough to read on stone-200 ── */
+html[data-theme="light"] .row-light .webapp .in-btn    { color: var(--stone-600); }
+html[data-theme="light"] .row-light .webapp .in-btn.on { color: var(--sage-600); background: rgba(100,127,93,.12); }
+html[data-theme="light"] .row-light .webapp .in-btn-sm { color: var(--stone-600); }
+/* New-chat button stays dark so it reads as the primary action */
+html[data-theme="light"] .row-light .webapp .in-add    { background: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .in-add svg { stroke: var(--stone-50) !important; }
+/* Notification dot border matches icon-nav bg */
+html[data-theme="light"] .row-light .webapp .in-dot    { border-color: var(--stone-200); }
+/* ORTH logo — explicitly dark so it's always visible */
+html[data-theme="light"] .row-light .webapp .in-logo path { fill: var(--stone-800) !important; }
+
+/* ── Chat screen ── */
+html[data-theme="light"] .row-light .webapp .chat-card  { background: var(--stone-50); }
+html[data-theme="light"] .row-light .webapp .chat-scroll { background: var(--stone-50); }
+html[data-theme="light"] .row-light .webapp .ct         { border-bottom-color: var(--stone-200); }
+html[data-theme="light"] .row-light .webapp .ct-title   { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .ct-dots    { color: var(--stone-600); }
+html[data-theme="light"] .row-light .webapp .ct-btn     { background: var(--stone-200); color: var(--stone-600); }
+html[data-theme="light"] .row-light .webapp .ct-upgrade { background: var(--sage-600); color: var(--sage-50); }
+html[data-theme="light"] .row-light .webapp .ct-x       { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .msg-ts,
+html[data-theme="light"] .row-light .webapp .msg-orth-ts { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .msg-user   { background: var(--stone-300); color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .msg-body   { color: var(--stone-800); }
+/* .sh has hardcoded color:white — needs !important */
+html[data-theme="light"] .row-light .webapp .msg-body .sh  { color: var(--stone-950) !important; }
+html[data-theme="light"] .row-light .webapp .msg-body .sub { color: var(--stone-600) !important; }
+html[data-theme="light"] .row-light .webapp .msg-body strong { color: var(--stone-950) !important; }
+html[data-theme="light"] .row-light .webapp .msg-body li     { color: var(--stone-700); }
+html[data-theme="light"] .row-light .webapp .msg-body li::before { color: var(--sage-600); }
+/* Chat drawer — lifted above chat-card (stone-50) → stone-200 */
+html[data-theme="light"] .row-light .webapp .drawer-bg  { background: var(--stone-200); }
+html[data-theme="light"] .row-light .webapp .d-ph        { color: var(--stone-500); }
+/* + circle: one clear step darker than drawer */
+html[data-theme="light"] .row-light .webapp .d-plus      { background: var(--stone-400); }
+html[data-theme="light"] .row-light .webapp .d-plus svg  { stroke: var(--stone-900) !important; }
+/* Both chips: same tone, tight range */
+html[data-theme="light"] .row-light .webapp .d-chip-dark { background: var(--stone-300); color: var(--stone-800); }
+html[data-theme="light"] .row-light .webapp .d-chip-mid  { background: var(--stone-300); color: var(--stone-800); }
+html[data-theme="light"] .row-light .webapp .d-chip-mid svg { stroke: var(--stone-900) !important; }
+html[data-theme="light"] .row-light .webapp .d-mic       { color: var(--stone-500); }
+
+/* ── Left panel ── */
+html[data-theme="light"] .row-light .webapp .lp          { background: var(--stone-50); }
+html[data-theme="light"] .row-light .webapp .lp-h        { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .ask-bar     { background: var(--stone-200); }
+html[data-theme="light"] .row-light .webapp .ask-ph      { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .ac-plus     { background: var(--stone-300); }
+html[data-theme="light"] .row-light .webapp .ac-chip     { background: var(--sage-700); color: var(--sage-50); }
+html[data-theme="light"] .row-light .webapp .ac-chip-mid { background: var(--stone-300); color: var(--stone-700); }
+html[data-theme="light"] .row-light .webapp .ac-mic      { color: var(--stone-500); }
+/* Unlock card — keep original dark sage to distinguish from content, exactly as dark mode */
+/* (no overrides — CSS variable defaults produce the dark sage gradient) */
+/* Prompt picker */
+html[data-theme="light"] .row-light .webapp .pp          { background: var(--stone-200); }
+html[data-theme="light"] .row-light .webapp .pp-head     { border-bottom-color: var(--stone-300); }
+html[data-theme="light"] .row-light .webapp .pp-label    { color: var(--stone-600); }
+html[data-theme="light"] .row-light .webapp .pp-row      { border-bottom-color: var(--stone-300); }
+html[data-theme="light"] .row-light .webapp .pp-text     { color: var(--stone-800); }
+/* Category pills */
+html[data-theme="light"] .row-light .webapp .pill        { background: var(--stone-200); }
+html[data-theme="light"] .row-light .webapp .pill:hover  { background: var(--stone-300); }
+html[data-theme="light"] .row-light .webapp .pill span   { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .pill-icon   { color: var(--stone-600); }
+html[data-theme="light"] .row-light .webapp .pill-upload { background: transparent; border-color: var(--stone-400); }
+html[data-theme="light"] .row-light .webapp .pill-upload span { color: var(--stone-600); }
+/* Suggestions card */
+html[data-theme="light"] .row-light .webapp .sugg-card   { background: var(--stone-200); }
+html[data-theme="light"] .row-light .webapp .sugg-head   { border-bottom-color: var(--stone-300); }
+html[data-theme="light"] .row-light .webapp .sugg-head-icon  { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .sugg-head-label { color: var(--stone-600); }
+html[data-theme="light"] .row-light .webapp .sugg-head-x     { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .sugg-item   { color: var(--stone-900); border-bottom-color: var(--stone-300); }
+
+/* ── Map overlays — frosted glass flipped to warm stone ── */
+html[data-theme="light"] .row-light .webapp .map-pill       { background: rgba(245,244,243,.92); border-color: rgba(190,187,184,.60); }
+html[data-theme="light"] .row-light .webapp .map-pill-name  { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .map-pill span  { color: var(--stone-800) !important; }
+html[data-theme="light"] .row-light .webapp .map-pill svg   { stroke: var(--stone-600) !important; }
+html[data-theme="light"] .row-light .webapp .ic             { background: rgba(245,244,243,.96); border-color: rgba(190,187,184,.55); }
+html[data-theme="light"] .row-light .webapp .ic-bname       { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .ic-title       { color: var(--stone-950); }
+html[data-theme="light"] .row-light .webapp .ic-body        { color: var(--stone-700); }
+html[data-theme="light"] .row-light .webapp .ic-cta         { background: var(--stone-950); color: var(--stone-50); }
+html[data-theme="light"] .row-light .webapp .ic-x           { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .plots-btn      { background: rgba(245,244,243,.90); border-color: var(--stone-300); color: var(--stone-700); }
+html[data-theme="light"] .row-light .webapp .zc,
+html[data-theme="light"] .row-light .webapp .map-loc        { background: rgba(245,244,243,.92); border-color: rgba(190,187,184,.65); }
+
+/* ── Weather dashboard cards ── */
+html[data-theme="light"] .row-light .webapp .wx-card        { background: var(--stone-100); }
+html[data-theme="light"] .row-light .webapp .wx-card-label  { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .wx-card-value  { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .wx-axis span   { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .wx-spray-axis  { color: var(--stone-500); }
+html[data-theme="light"] .row-light .webapp .wx-sunrise-main { color: var(--stone-900); }
+html[data-theme="light"] .row-light .webapp .wx-sunrise-sub  { color: var(--stone-600); }
+/* wx-header sits on #c8cfc0 map-panel (warm sage bg) — dark text already correct */
+html[data-theme="light"] .row-light .webapp .map-panel { background: var(--sage-400) !important; }
+/* wx-tooltip: inline styles use var() + hardcoded white — override both */
+html[data-theme="light"] .row-light .webapp .wx-tooltip     { background: var(--stone-100) !important; border-color: var(--stone-300) !important; }
+html[data-theme="light"] .row-light .webapp .wx-tip-time    { color: var(--stone-900) !important; }
+html[data-theme="light"] .row-light .webapp .wx-tip-val     { color: var(--stone-900) !important; }
+html[data-theme="light"] .row-light .webapp .wx-tip-label   { color: var(--stone-600) !important; }
+/* SVG chart cursor line — was white, now dark */
+html[data-theme="light"] .row-light .webapp .wx-cursor      { stroke: rgba(30,26,24,0.25) !important; }
+/* wx-card-value semantic variants — higher specificity than base override */
+html[data-theme="light"] .row-light .webapp .wx-card-value.amber { color: oklch(0.55 0.155 72); }
+html[data-theme="light"] .row-light .webapp .wx-card-value.red   { color: oklch(0.51 0.175 22); }
+html[data-theme="light"] .row-light .webapp .wx-card-value.green { color: var(--sage-700); }
+
+/* ═══════════════════════════════════════════════════════════════
+   BORDERLESS MODE — remove this entire block to restore borders.
+   Targets containers, buttons, chips, overlays, and cards only.
+   Dividers (border-bottom / border-top), tab underlines, and
+   accent lines (border-left on citation) are intentionally kept.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Dark mode inline borders ── */
+[style*="border:1px solid rgba(255,255,255,.15)"]  { border: none !important; }
+[style*="border:1px solid rgba(255,255,255,.10)"]  { border: none !important; }
+[style*="border:1.5px solid #585d62"]              { border: none !important; }
+[style*="border:1px solid rgba(100,127,93,.20)"]   { border: none !important; }
+
+/* ── Light mode converted borders ── */
+[style*="border:1px solid rgba(60,40,30,.15)"]     { border: none !important; }
+[style*="border:1px solid rgba(60,40,30,.12)"]     { border: none !important; }
+[style*="border:1px solid rgba(60,40,30,.20)"]     { border: none !important; }
+[style*="border:1.5px solid rgba(60,40,30,.20)"]   { border: none !important; }
+[style*="border:1px solid rgba(60,40,30,.09)"]     { border: none !important; }
+
+/* ── Web app CSS class borders ── */
+.webapp .ic                                { border: none !important; }
+.webapp .map-pill                          { border: none !important; }
+.webapp .zc,
+.webapp .map-loc                           { border: none !important; }
+.webapp .plots-btn                         { border: none !important; }
+.webapp .wx-tooltip                        { border: none !important; }
+.in-dot                                    { border: none !important; }
+
+/* ── Restore: upload ghost buttons need border to exist visually ── */
+[style*="width:100%"][style*="border:1px solid rgba(255,255,255,.15)"] { border: 1px solid rgba(255,255,255,.15) !important; }
+[style*="width:100%"][style*="border:1px solid rgba(60,40,30,.15)"]    { border: 1px solid rgba(60,40,30,.15) !important; }
+
+/* ── Restore: Back button — pure ghost pill, flex:1 height:50px no fill ── */
+[style*="flex:1"][style*="height:50px"][style*="border:1px solid rgba(255,255,255,.15)"]  { border: 1px solid rgba(255,255,255,.15) !important; }
+[style*="flex:1"][style*="height:50px"][style*="border:1px solid rgba(60,40,30,.15)"]     { border: 1px solid rgba(60,40,30,.15) !important; }
+
+/* ── Restore: Complete Plot Profile — height:44px ghost button ── */
+[style*="height:44px"][style*="border:1px solid rgba(255,255,255,.15)"] { border: 1px solid rgba(255,255,255,.15) !important; }
+[style*="height:44px"][style*="border:1px solid rgba(60,40,30,.15)"]    { border: 1px solid rgba(60,40,30,.15) !important; }
+
+/* ── Restore: FarmSelector inactive radio — 20px circle indicator ── */
+[style*="height:20px"][style*="border:1.5px solid #585d62"]             { border: 1.5px solid #585d62 !important; }
+[style*="height:20px"][style*="border:1.5px solid rgba(60,40,30,.20)"]  { border: 1.5px solid rgba(60,40,30,.20) !important; }
+
+/* ── Web app light mode border overrides ── */
+html[data-theme="light"] .row-light .webapp .ic         { border: none !important; }
+html[data-theme="light"] .row-light .webapp .map-pill   { border: none !important; }
+html[data-theme="light"] .row-light .webapp .zc,
+html[data-theme="light"] .row-light .webapp .map-loc    { border: none !important; }
+
+/* ── Restore: wx-card needs border in light mode — stone-100 on stone-200 has no contrast ── */
+html[data-theme="light"] .row-light .webapp .wx-card    { border: 1px solid rgba(60,40,30,.10) !important; }
+
+/* END BORDERLESS MODE */
+
 </style>
 </head>
 <body>
@@ -865,9 +1054,9 @@ footer {
   </ul>
   <div class="nav-right">
     <span class="nav-label-static">EN</span>
-    <!-- LIGHT MODE LOCKED — Head of Brand only
-    <button class="btn-nav" onclick="toggleTheme()" id="theme-btn">UI Light</button>
-    -->
+    <div class="theme-toggle" id="theme-btn" onclick="toggleTheme()" role="switch" aria-label="Toggle light mode">
+      <div class="theme-toggle-knob"></div>
+    </div>
   </div>
 </nav>
 
@@ -980,22 +1169,16 @@ footer {
   </div>
 </footer>
 
-<!--
-  LIGHT MODE ARCHIVE — Head of Brand only. Do not activate without authorisation.
 
-/*
-  ╔═══════════════════════════════════════════════════════════════════╗
-  ║  LIGHT MODE — LOCKED & PRESERVED                                  ║
-  ║  Not active. Authorised for reinstatement by Head of Brand only.  ║
-  ║  Do not call makeLight(), toggleTheme(), or render row-light.     ║
-  ╠═══════════════════════════════════════════════════════════════════╣
-  ║  To restore: uncomment this block, re-enable the toggle button,   ║
-  ║  re-enable row-light CSS, and restore screenLight: in SNIPPETS.   ║
-  ╚═══════════════════════════════════════════════════════════════════╝
+<script>
+const SC = .87;
 
 /* ── LIGHT THEME TRANSFORM ── */
 function makeLight(html) {
   return html
+
+    /* ── PROTECT sage button white text before global swap ── */
+    .replace(/background:#647f5d([^>]*?)color:white/g, 'background:#647f5d$1__SAGE__')
 
     /* ── BACKGROUNDS ── */
     .replace(/background:#141719/g,  'background:#e8e7e5')
@@ -1087,6 +1270,7 @@ function makeLight(html) {
     .replace(/rgba\(255,255,255,\.07\)/g,  'rgba(30,26,24,0.08)')
     .replace(/rgba\(255,255,255,\.10\)/g,  'rgba(30,26,24,0.10)')
     .replace(/rgba\(255,255,255,0\.1\)/g,  'rgba(30,26,24,0.10)')
+    .replace(/rgba\(255,255,255,\.12\)/g,  'rgba(30,26,24,0.12)')
     .replace(/rgba\(255,255,255,\.15\)/g,  'rgba(30,26,24,0.15)')
     .replace(/rgba\(255,255,255,\.20\)/g,  'rgba(30,26,24,0.20)')
     .replace(/rgba\(255,255,255,\.22\)/g,  'rgba(30,26,24,0.22)')
@@ -1098,6 +1282,7 @@ function makeLight(html) {
     .replace(/rgba\(255,255,255,\.62\)/g,  'rgba(30,26,24,0.60)')
     .replace(/rgba\(255,255,255,\.65\)/g,  'rgba(30,26,24,0.65)')
     .replace(/rgba\(255,255,255,\.72\)/g,  'rgba(30,26,24,0.72)')
+    .replace(/rgba\(255,255,255,\.85\)/g,  'rgba(30,26,24,0.85)')
     .replace(/rgba\(255,255,255,\.80\)/g,  'rgba(30,26,24,0.80)')
     .replace(/rgba\(255,255,255,\.90\)/g,  'rgba(30,26,24,0.90)')
     .replace(/rgba\(255,255,255,0\.95\)/g, 'rgba(30,26,24,0.95)')
@@ -1132,17 +1317,41 @@ function makeLight(html) {
     .replace(/stroke="white"/g, 'stroke="#302e2c"')
 
     /* sage, oklch, blue map dots, warm pastels (#E8AAAA etc.) — untouched */
+
+    /* ── MOBILE WEATHER: darken amber+blue for light bg ── */
+    .replace(/stroke="oklch\(0\.82 0\.135 72\)"/g,           'stroke="oklch(0.55 0.155 72)"')
+    .replace(/stroke="oklch\(0\.81 0\.108 232\)"/g,          'stroke="oklch(0.42 0.148 232)"')
+    .replace(/stop-color="oklch\(0\.82 0\.135 72\)"/g,       'stop-color="oklch(0.55 0.155 72)"')
+    .replace(/stop-color="oklch\(0\.81 0\.108 232\)"/g,      'stop-color="oklch(0.42 0.148 232)"')
+    .replace(/color:oklch\(0\.82 0\.135 72\)/g,              'color:oklch(0.55 0.155 72)')
+
+    /* ── SAGE CTA BUTTONS: restore white text on sage-600 background ── */
+    .replace(/(background:#647f5d[^"]{0,200}?)color:#201d19/g, '$1color:rgba(255,255,255,.90)')
+
+    /* ── bMap DRAW/PIVOT TOGGLE: outer pill → stone-300 so active tab (stone-200) is distinct ── */
+    .replace(/background:#d4d2cf;border-radius:9999px;padding:3px;/g,
+             'background:#bebbb8;border-radius:9999px;padding:3px;')
+
+    /* ── bMap LIGHT MODE: hide drawing overlay SVG and area tooltip ── */
+    .replace(/<svg style="position:absolute;inset:0;width:100%;height:100%;z-index:2;" viewBox="0 0 360 480" preserveAspectRatio="none">/g,
+             '<svg style="position:absolute;inset:0;width:100%;height:100%;z-index:2;display:none;" viewBox="0 0 360 480" preserveAspectRatio="none">')
+    .replace(/top:135px;left:50%;transform:translateX\(-50%\);z-index:4;/g,
+             'top:135px;left:50%;transform:translateX(-50%);z-index:4;display:none;')
+
+    /* ── SCREEN WRAPPER BASE COLOR: fixes currentColor icon inheritance ── */
+    .replace(/zoom:0\.87;display:flex;flex-direction:column;background:#e8e7e5;font-family:'DM Sans',sans-serif;/g,
+             "zoom:0.87;display:flex;flex-direction:column;background:#e8e7e5;color:#201d19;font-family:'DM Sans',sans-serif;")
+
+    /* ── QUICK ACTIONS icon circles: explicit color so currentColor matches outline icons ── */
+    .replace(/width:34px;height:34px;background:#d4d2cf;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;/g,
+             'width:34px;height:34px;background:#d4d2cf;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#504e4c;')
+
+    /* ── RESTORE pre-protected sage button text ── */
+    .replace(/__SAGE__/g, 'color:rgba(245,250,244,.95)')
     ;
 }
 
 
-  SNIPPETS screenLight values are preserved inline in the SNIPPETS
-  data structure below — search for screenLight: to locate them.
-  They are inert while makeLight() is not called.
-*/
--->
-<script>
-const SC = .87;
 const BASE = 'https://raw.githubusercontent.com/ayditechnologies/orth/Flower-Abstract/';
 const MAP_IMG  = 'https://raw.githubusercontent.com/ayditechnologies/orth/main/Map%20Boundary.jpg';
 const LEAF_IMG = 'https://raw.githubusercontent.com/ayditechnologies/orth/main/S-nathan-anderson-FuNq5bqUwsg-unsplash.jpg';
@@ -1167,15 +1376,23 @@ const BG_COLORS = {
   diagnosis:   '#FAE8E8',
 };
 
-/* ── Icons ── */
+/* ── Icons ──
+   Color tiers:
+   currentColor  — adaptive (I_CHAT, I_MIC, I_DRAW, I_PIVOT, I_UNDO, I_BACK, SPILL_ICONS)
+   rgba(.62)     — active/labeled functional (I_PLUS, I_IRRIG, I_FERT, I_UPLD, I_FILE, I_SUN, I_CLOUD)
+   rgba(.45)     — secondary/chip (I_LOCK, I_FILT, I_CAL, I_CHEV, I_CHEV_D, I_BACK via color)
+   rgba(.35)     — placeholder/hint (I_SRCH, I_CLOSE, I_CHEV_R)
+   #404549       — I_GEAR: semantic exception on lighter surface in bFarmSelector
+   #0c0f13       — I_ATTH: on light #f0f2f4 Ask ORTH bar
+*/
 const I_CHAT  = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 12H12M15 12H12M12 12V9M12 12V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.8214 2.48697 15.5291 3.33782 17L2.5 21.5L7 20.6622C8.47087 21.513 10.1786 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const I_PLUS  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#bcbfc3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-const I_LOCK  = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#bcbfc3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7V11"/></svg>`;
+const I_PLUS  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+const I_LOCK  = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7V11"/></svg>`;
 const I_MIC   = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15C13.6569 15 15 13.6569 15 12V6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6V12C9 13.6569 10.3431 15 12 15Z"/><path d="M5 11C5 14.866 8.13401 18 12 18C15.866 18 19 14.866 19 11M12 18V22M8 22H16"/></svg>`;
 const I_DRAW  = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.0207 5.82839L15.8491 2.99996L20.7988 7.94971L17.9704 10.7781M13.0207 5.82839L3.41405 15.435C3.22652 15.6225 3.12116 15.8769 3.12116 16.1421V20.6776H7.65669C7.92191 20.6776 8.17626 20.5723 8.3638 20.3847L17.9704 10.7781M13.0207 5.82839L17.9704 10.7781"/></svg>`;
 const I_PIVOT = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>`;
 const I_UNDO  = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9H15C18.3137 9 21 11.6863 21 15C21 18.3137 18.3137 21 15 21H12M3 9L7 5M3 9L7 13"/></svg>`;
-const I_BURG  = `<svg width="15" height="11" viewBox="0 0 15 11" fill="none"><rect y="0" width="15" height="1.8" rx=".9" fill="#bcbfc3"/><rect y="4.6" width="15" height="1.8" rx=".9" fill="#bcbfc3"/><rect y="9.2" width="15" height="1.8" rx=".9" fill="#bcbfc3"/></svg>`;
+const I_BURG  = `<svg width="15" height="11" viewBox="0 0 15 11" fill="none"><rect y="0" width="15" height="1.8" rx=".9" fill="rgba(255,255,255,.62)"/><rect y="4.6" width="15" height="1.8" rx=".9" fill="rgba(255,255,255,.62)"/><rect y="9.2" width="15" height="1.8" rx=".9" fill="rgba(255,255,255,.62)"/></svg>`;
 const I_CHEV  = `<svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="rgba(255,255,255,.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const I_BACK  = `<span style="font-size:24px;color:rgba(255,255,255,.45);font-weight:300;line-height:1;">&#x2039;</span>`;
 const I_CHEV_R= `<span style="font-size:22px;color:rgba(255,255,255,.35);line-height:1;flex-shrink:0;padding-left:4px;">&#x203A;</span>`;
@@ -1190,11 +1407,9 @@ const I_FILE  = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" str
 const I_CAL   = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 const I_GEAR  = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#404549" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>`;
 const I_CLOSE = `<span style="font-size:24px;color:rgba(255,255,255,.35);line-height:1;font-weight:300;">&#x00D7;</span>`;
-const I_WARN  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
-const I_SUN   = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dcdfe2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
-const I_CLOUD = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dcdfe2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`;
+const I_SUN   = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+const I_CLOUD = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`;
 const LOGO_W  = `<svg width="20" height="20" viewBox="0 0 1080 1080" fill="none"><path fill="white" d="M540,5C244.53,5,5,244.53,5,540s239.53,535,535,535,535-239.53,535-535S835.47,5,540,5ZM782.03,876c-160.85,42.72-327.63,41.18-483.88-.19-127.74-33.82-203.82-165.56-169.39-293.13,43.42-160.87,127.94-304.8,241.55-419.77,93.19-94.3,246.14-94.3,339.32,0,113.67,115.02,198.21,259.03,241.61,419.98,34.39,127.53-41.56,259.21-169.22,293.11Z"/></svg>`;
-const LOGO_DK = `<svg width="18" height="18" viewBox="0 0 1080 1080" fill="none"><path fill="#0c0f13" d="M540,5C244.53,5,5,244.53,5,540s239.53,535,535,535,535-239.53,535-535S835.47,5,540,5ZM782.03,876c-160.85,42.72-327.63,41.18-483.88-.19-127.74-33.82-203.82-165.56-169.39-293.13,43.42-160.87,127.94-304.8,241.55-419.77,93.19-94.3,246.14-94.3,339.32,0,113.67,115.02,198.21,259.03,241.61,419.98,34.39,127.53-41.56,259.21-169.22,293.11Z"/></svg>`;
 const LOGO_SAGE= `<svg width="20" height="20" viewBox="0 0 1080 1080" fill="none"><path fill="#647f5d" d="M540,5C244.53,5,5,244.53,5,540s239.53,535,535,535,535-239.53,535-535S835.47,5,540,5ZM782.03,876c-160.85,42.72-327.63,41.18-483.88-.19-127.74-33.82-203.82-165.56-169.39-293.13,43.42-160.87,127.94-304.8,241.55-419.77,93.19-94.3,246.14-94.3,339.32,0,113.67,115.02,198.21,259.03,241.61,419.98,34.39,127.53-41.56,259.21-169.22,293.11Z"/></svg>`;
 const SPILL_ICONS = [
   `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C9 21 6 18 6 15V11C6 8 8.5 6 12 6C15.5 6 18 8 18 11V15C18 18 15 21 12 21Z"/><path d="M12 6V3M9 6L6 3M15 6L18 3"/><path d="M6 12H3M18 12H21M6 16H3M18 16H21"/></svg>`,
@@ -1220,14 +1435,11 @@ const DRAG_HANDLE = `<div style="padding:10px 0 6px;display:flex;justify-content
 /* Map bottom tab bar — shared by Alerts and Quick Actions */
 const MAP_BOTTOM_NAV = `<div style="display:flex;align-items:center;gap:8px;justify-content:center;"><div style="background:#0c0f13;backdrop-filter:blur(12px);border-radius:9999px;padding:6px;display:flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.15);"><div style="background:#2e3337;border-radius:9999px;padding:12px 16px;display:flex;align-items:center;gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dcdfe2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span style="font-size:13px;font-weight:600;color:#dcdfe2;">Map</span></div><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 1080 1080" fill="none"><path fill="rgba(255,255,255,.62)" d="M540,5C244.53,5,5,244.53,5,540s239.53,535,535,535,535-239.53,535-535S835.47,5,540,5ZM782.03,876c-160.85,42.72-327.63,41.18-483.88-.19-127.74-33.82-203.82-165.56-169.39-293.13,43.42-160.87,127.94-304.8,241.55-419.77,93.19-94.3,246.14-94.3,339.32,0,113.67,115.02,198.21,259.03,241.61,419.98,34.39,127.53-41.56,259.21-169.22,293.11Z"/></svg></div><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div></div><div style="width:50px;height:50px;background:#141719;backdrop-filter:blur(12px);border-radius:9999px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dcdfe2" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>`;
 
-/* Search bar */
-const SEARCH_BAR = `<div style="height:42px;background:#1e2226;border-radius:9999px;display:flex;align-items:center;padding:0 18px;gap:8px;margin-bottom:12px;">${I_SRCH}<div style="font-size:13px;color:rgba(255,255,255,.35);flex:1;">Search</div>${I_SRCH}</div>`;
-
 /* Filter pill — used in Insights and anywhere with a dropdown label */
 const filterPill = (label) => `<div style="background:#2e3337;border-radius:9999px;padding:7px 11px;font-size:11px;font-weight:600;color:#dcdfe2;white-space:nowrap;display:flex;align-items:center;gap:5px;">${label}${I_CHEV_D}</div>`;
 
 /* Nav bar — top of chat/feature screens */
-const nav = (t) => `<div style="display:flex;align-items:center;justify-content:space-between;padding:13px 18px 11px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;"><div style="width:28px;height:28px;display:flex;align-items:center;">${I_BACK}</div><div style="font-size:13px;font-weight:600;color:#dcdfe2;">${t}</div><div style="display:flex;align-items:center;gap:6px;color:#dcdfe2;">${I_CHAT}<div style="font-size:18px;letter-spacing:1px;line-height:1;padding:2px 4px;color:#bcbfc3;">&#xB7;&#xB7;&#xB7;</div></div></div>`;
+const nav = (t) => `<div style="display:flex;align-items:center;justify-content:space-between;padding:13px 18px 11px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;"><div style="width:28px;height:28px;display:flex;align-items:center;">${I_BACK}</div><div style="font-size:13px;font-weight:600;color:white;">${t}</div><div style="display:flex;align-items:center;gap:6px;color:#dcdfe2;">${I_CHAT}<div style="font-size:18px;letter-spacing:1px;line-height:1;padding:2px 4px;color:#bcbfc3;">&#xB7;&#xB7;&#xB7;</div></div></div>`;
 
 /* Simple back nav — for screens with just a back + centered title */
 const navSimple = (t) => `<div style="display:flex;align-items:center;padding:13px 18px 11px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;"><div style="width:28px;height:28px;display:flex;align-items:center;">${I_BACK}</div><div style="flex:1;text-align:center;font-size:14px;font-weight:700;color:white;">${t}</div><div style="width:28px;"></div></div>`;
@@ -1251,7 +1463,7 @@ const typeGrid = (items) => `<div style="padding:4px 18px;display:grid;grid-temp
    CORE FEATURE BUILDERS
 ───────────────────────────────────────────────────── */
 function bMap() {
-  return `<div style="width:360px;height:480px;zoom:0.87;position:relative;overflow:hidden;background:${MAP_COLOR};font-family:'DM Sans',sans-serif;"><img src="${MAP_IMG}" style="display:none" alt=""><div style="position:absolute;inset:0;width:100%;height:100%;background:${MAP_COLOR};z-index:0;"></div><svg style="position:absolute;inset:0;width:100%;height:100%;z-index:2;" viewBox="0 0 360 480" preserveAspectRatio="none"><polygon points="102,345 232,188 338,294 264,380" fill="#1e2226" stroke="white" stroke-width="2"/><circle cx="102" cy="345" r="5" fill="white"/><circle cx="232" cy="188" r="5" fill="white"/><circle cx="338" cy="294" r="5" fill="white"/><circle cx="264" cy="380" r="5" fill="white"/><circle cx="166" cy="266" r="3.5" fill="white" opacity=".6"/><circle cx="284" cy="241" r="3.5" fill="white" opacity=".6"/><circle cx="301" cy="337" r="3.5" fill="white" opacity=".6"/><circle cx="183" cy="362" r="3.5" fill="white" opacity=".6"/><circle cx="102" cy="345" r="8.5" fill="none" stroke="rgba(96,165,250,.85)" stroke-width="2"/><circle cx="102" cy="345" r="4" fill="rgba(96,165,250,.9)"/></svg><div style="position:absolute;top:16px;left:0;right:0;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:0 18px;"><div style="width:36px;height:36px;background:#0c0f13;border-radius:9999px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.62);font-size:13px;font-weight:700;">&#x2715;</div><div style="display:flex;background:#f0f2f4;border-radius:9999px;padding:3px;"><div style="padding:6px 14px;background:#1e2226;border-radius:9999px;font-size:11px;font-weight:600;color:#dcdfe2;display:flex;align-items:center;gap:4px;white-space:nowrap;">${I_DRAW}Draw</div><div style="padding:6px 14px;font-size:11px;color:rgba(20,23,25,.55);display:flex;align-items:center;gap:4px;white-space:nowrap;">${I_PIVOT}Pivot</div></div><div style="width:36px;"></div></div><div style="position:absolute;top:135px;left:50%;transform:translateX(-50%);z-index:4;background:#0c0f13;border-radius:8px;padding:5px 12px;font-size:13px;font-weight:600;color:white;border:1px solid rgba(255,255,255,.10);white-space:nowrap;">Total Area: 39.26 ha</div><div style="position:absolute;bottom:0;left:0;right:0;z-index:4;display:flex;gap:12px;padding:12px 18px 28px;"><div style="flex:1;height:52px;background:#0c0f13;border-radius:9999px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;color:white;border:1px solid rgba(255,255,255,.15);white-space:nowrap;">${I_UNDO}Undo</div><div style="flex:2;height:52px;background:#f0f2f4;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#0c0f13;white-space:nowrap;">Confirm</div></div></div>`;
+  return `<div style="width:360px;height:480px;zoom:0.87;position:relative;overflow:hidden;background:${MAP_COLOR};font-family:'DM Sans',sans-serif;"><img src="${MAP_IMG}" style="display:none" alt=""><div style="position:absolute;inset:0;width:100%;height:100%;background:${MAP_COLOR};z-index:0;"></div><svg style="position:absolute;inset:0;width:100%;height:100%;z-index:2;display:none;" viewBox="0 0 360 480" preserveAspectRatio="none"><polygon points="102,345 232,188 338,294 264,380" fill="#1e2226" stroke="white" stroke-width="2"/><circle cx="102" cy="345" r="5" fill="white"/><circle cx="232" cy="188" r="5" fill="white"/><circle cx="338" cy="294" r="5" fill="white"/><circle cx="264" cy="380" r="5" fill="white"/><circle cx="166" cy="266" r="3.5" fill="white" opacity=".6"/><circle cx="284" cy="241" r="3.5" fill="white" opacity=".6"/><circle cx="301" cy="337" r="3.5" fill="white" opacity=".6"/><circle cx="183" cy="362" r="3.5" fill="white" opacity=".6"/><circle cx="102" cy="345" r="8.5" fill="none" stroke="rgba(96,165,250,.85)" stroke-width="2"/><circle cx="102" cy="345" r="4" fill="rgba(96,165,250,.9)"/></svg><div style="position:absolute;top:16px;left:0;right:0;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:0 18px;"><div style="width:36px;height:36px;background:#0c0f13;border-radius:9999px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.62);font-size:13px;font-weight:700;">&#x2715;</div><div style="display:flex;background:#f0f2f4;border-radius:9999px;padding:3px;"><div style="padding:6px 14px;background:#1e2226;border-radius:9999px;font-size:11px;font-weight:600;color:#dcdfe2;display:flex;align-items:center;gap:4px;white-space:nowrap;">${I_DRAW}Draw</div><div style="padding:6px 14px;font-size:11px;color:rgba(20,23,25,.55);display:flex;align-items:center;gap:4px;white-space:nowrap;">${I_PIVOT}Pivot</div></div><div style="width:36px;"></div></div><div style="position:absolute;top:135px;left:50%;transform:translateX(-50%);z-index:4;display:none;background:#0c0f13;border-radius:8px;padding:5px 12px;font-size:13px;font-weight:600;color:white;border:1px solid rgba(255,255,255,.10);white-space:nowrap;">Total Area: 39.26 ha</div><div style="position:absolute;bottom:0;left:0;right:0;z-index:4;display:flex;gap:12px;padding:12px 18px 28px;"><div style="flex:1;height:52px;background:#0c0f13;border-radius:9999px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;color:white;border:1px solid rgba(255,255,255,.15);white-space:nowrap;">${I_UNDO}Undo</div><div style="flex:2;height:52px;background:#f0f2f4;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#0c0f13;white-space:nowrap;">Confirm</div></div></div>`;
 }
 
 function bSuggestions() {
@@ -1298,7 +1510,7 @@ function bWeather() {
     <path d="M0,62 C16,60 33,58 50,52 C66,44 83,28 100,14 C116,6 133,4 150,8 C166,16 183,36 200,54 L200,72 L0,72 Z" fill="url(#s7-gt)"/>
     <path d="M0,62 C16,60 33,58 50,52 C66,44 83,28 100,14 C116,6 133,4 150,8 C166,16 183,36 200,54" fill="none" stroke="oklch(0.82 0.135 72)" stroke-width="0.5"/>
   </svg>
-  <div style="display:flex;justify-content:space-between;padding:4px 10px 10px;"><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;">6AM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;">12PM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;">6PM</span></div>
+  <div style="display:flex;justify-content:space-between;padding:4px 10px 10px;"><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans',monospace;">6AM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans',monospace;">12PM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans',monospace;">6PM</span></div>
 </div>
 <div style="background:#0c0f13;border-radius:12px;padding:14px 0 0;display:flex;flex-direction:column;position:relative;overflow:hidden;">
   <div style="font-size:11px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:.02em;padding-left:14px;margin-bottom:4px;">Wind</div>
@@ -1308,7 +1520,7 @@ function bWeather() {
     <path d="M0,56 C16,54 33,52 50,46 C66,38 83,22 100,14 C116,8 133,10 150,20 C166,32 183,48 200,60 L200,72 L0,72 Z" fill="url(#s7-gw)"/>
     <path d="M0,56 C16,54 33,52 50,46 C66,38 83,22 100,14 C116,8 133,10 150,20 C166,32 183,48 200,60" fill="none" stroke="oklch(0.81 0.108 232)" stroke-width="0.5"/>
   </svg>
-  <div style="display:flex;justify-content:space-between;padding:4px 10px 10px;"><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;">6AM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;">12PM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;">6PM</span></div>
+  <div style="display:flex;justify-content:space-between;padding:4px 10px 10px;"><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans',monospace;">6AM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans',monospace;">12PM</span><span style="font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans',monospace;">6PM</span></div>
 </div>
 </div><div style="margin:10px 14px 28px;background:#1e2226;border-radius:14px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:600;color:white;">Sunrise</div><div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:3px;">Sunset 7:51 PM</div></div><div style="font-size:20px;font-weight:700;color:white;">6:14 AM</div></div></div>`;
 }
@@ -1337,10 +1549,10 @@ function bPromptPicker() {
 function bQuickActions() {
   const actions = [
     {label:'New Chat', icon:I_CHAT, badge:null},
-    {label:'Create New Plot', icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#bcbfc3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>`, badge:null},
+    {label:'Create New Plot', icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>`, badge:null},
     {label:'Start 7-Day Free Trial', icon:LOGO_SAGE, badge:null},
-    {label:'Invite Team Member', icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#bcbfc3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, badge:'ORTH Teams'},
-    {label:'Share ORTH', icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#bcbfc3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`, badge:null},
+    {label:'Invite Team Member', icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, badge:'ORTH Teams'},
+    {label:'Share ORTH', icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`, badge:null},
   ];
   // bottomNav → use MAP_BOTTOM_NAV
   return `<div style="width:360px;height:480px;zoom:0.87;position:relative;overflow:hidden;background:${MAP_COLOR};font-family:'DM Sans',sans-serif;"><img src="${MAP_IMG}" style="display:none" alt=""><div style="position:absolute;inset:0;width:100%;height:100%;background:${MAP_COLOR};z-index:0;opacity:.45;"></div><div style="position:absolute;top:16px;left:18px;right:18px;z-index:3;background:#141719;border-radius:20px;padding:4px 0;"><div style="display:flex;justify-content:center;padding:10px 0 6px;"><div style="width:36px;height:4px;background:rgba(255,255,255,.20);border-radius:9999px;"></div></div>${actions.map((a,i) => `<div style="padding:12px 16px;display:flex;align-items:center;gap:13px;${i>0?'border-top:1px solid rgba(255,255,255,.07)':''}"><div style="width:34px;height:34px;background:#1e2226;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${a.icon}</div><div style="font-size:14px;font-weight:500;color:#dcdfe2;flex:1;">${a.label}</div>${a.badge?`<div style="background:#2e3337;border-radius:9999px;padding:3px 9px;font-size:9.5px;font-weight:700;color:white;">${a.badge}</div>`:''}</div>`).join('')}</div><div style="position:absolute;bottom:0;left:0;right:0;z-index:3;padding:10px 18px 28px;">${MAP_BOTTOM_NAV}</div></div>`;
@@ -1362,7 +1574,7 @@ function bPlotDetails() {
    PLOT CREATION BUILDERS
 ───────────────────────────────────────────────────── */
 function bPlotName() {
-  return `<div style="width:360px;zoom:0.87;display:flex;flex-direction:column;background:#141719;font-family:'DM Sans',sans-serif;">${sHead("What&apos;s your plot name?",null)}<div style="min-height:220px;display:flex;align-items:center;justify-content:center;padding:32px 18px 28px;"><div style="font-size:38px;font-weight:300;color:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;width:100%;text-align:center;">North Block<span style="width:2px;height:38px;background:#bcbfc3;display:inline-block;vertical-align:middle;margin-left:2px;"></span></div></div>${sFoot('Back','Continue')}</div>`;
+  return `<div style="width:360px;zoom:0.87;display:flex;flex-direction:column;background:#141719;font-family:'DM Sans',sans-serif;">${sHead("What&apos;s your plot name?",null)}<div style="min-height:220px;display:flex;align-items:center;justify-content:center;padding:32px 18px 28px;"><div style="font-size:38px;font-weight:300;color:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;width:100%;text-align:center;">North Block<span style="width:2px;height:38px;background:rgba(255,255,255,.80);display:inline-block;vertical-align:middle;margin-left:2px;"></span></div></div>${sFoot('Back','Continue')}</div>`;
 }
 
 function bCropSelection() {
@@ -1372,7 +1584,7 @@ function bCropSelection() {
 
 function bVariety() {
   const varieties = ['Nonpareil','Carmel','Butte','Padre','Fritz','Wood Colony','Price','Aldrich','Monterey','Avalon','Shasta','Independence','Winters','Sonora'];
-  return `<div style="width:360px;zoom:0.87;display:flex;flex-direction:column;background:#141719;font-family:'DM Sans',sans-serif;">${sHead("What variety do Nonpareil almonds grow?",null)}<div style="padding:0 18px 10px;min-height:220px;display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="background:#1e2226;border-radius:9999px;padding:10px 20px;display:inline-flex;align-items:center;gap:8px;"><span style="font-size:16px;color:rgba(255,255,255,.45);">+</span><span style="font-size:14px;font-weight:500;color:rgba(255,255,255,.60);">New Variety</span></div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%;">${varieties.map(v => `<div style="background:#1e2226;border-radius:9999px;padding:7px 14px;font-size:13px;color:#bcbfc3;">${v}</div>`).join('')}</div></div>${sFoot(null,'Continue')}</div>`;
+  return `<div style="width:360px;zoom:0.87;display:flex;flex-direction:column;background:#141719;font-family:'DM Sans',sans-serif;">${sHead("What variety do Nonpareil almonds grow?",null)}<div style="padding:0 18px 10px;min-height:220px;display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="background:#1e2226;border-radius:9999px;padding:10px 20px;display:inline-flex;align-items:center;gap:8px;"><span style="font-size:16px;color:rgba(255,255,255,.45);">+</span><span style="font-size:14px;font-weight:500;color:rgba(255,255,255,.60);">New Variety</span></div><div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%;">${varieties.map(v => `<div style="background:#1e2226;border-radius:9999px;padding:7px 14px;font-size:13px;color:#bcbfc3;">${v}</div>`).join('')}</div></div>${sFoot('Back','Continue')}</div>`;
 }
 
 function bPlotType() {
@@ -1418,7 +1630,7 @@ function bDiseaseHistory() {
 }
 
 function bDocumentUpload() {
-  return `<div style="width:360px;zoom:0.87;display:flex;flex-direction:column;background:#141719;font-family:'DM Sans',sans-serif;">${sHead("Upload Documents &amp; Reports",null)}<div style="min-height:160px;padding:20px 18px;display:flex;flex-direction:column;gap:10px;align-items:center;"><div style="width:100%;background:#1e2226;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><div style="width:36px;height:36px;background:#2e3337;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${I_FILE}</div><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:white;margin-bottom:2px;">Water_Report_2025.pdf</div><div style="font-size:11px;color:rgba(255,255,255,.35);">PDF &middot; 1.2 MB</div></div><div style="width:8px;height:8px;border-radius:50%;background:#647f5d;flex-shrink:0;"></div></div><div style="width:100%;background:#1e2226;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><div style="width:36px;height:36px;background:#2e3337;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${I_FILE}</div><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:white;margin-bottom:2px;">Soil_Soil Analysis_Field7.pdf</div><div style="font-size:11px;color:rgba(255,255,255,.35);">PDF &middot; 840 KB</div></div><div style="width:8px;height:8px;border-radius:50%;background:#647f5d;flex-shrink:0;"></div></div><div style="width:100%;height:50px;border:1px solid rgba(255,255,255,.15);border-radius:9999px;display:flex;align-items:center;justify-content:center;gap:8px;">${I_UPLD}<span style="font-size:15px;font-weight:500;color:#bcbfc3;">Upload File</span></div></div>${sFoot('Back','Create Plot')}</div>`;
+  return `<div style="width:360px;zoom:0.87;display:flex;flex-direction:column;background:#141719;font-family:'DM Sans',sans-serif;">${sHead("Upload Documents &amp; Reports",null)}<div style="min-height:160px;padding:20px 18px;display:flex;flex-direction:column;gap:10px;align-items:center;"><div style="width:100%;background:#1e2226;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><div style="width:36px;height:36px;background:#2e3337;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${I_FILE}</div><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:white;margin-bottom:2px;">Water_Report_2025.pdf</div><div style="font-size:11px;color:rgba(255,255,255,.35);">PDF &middot; 1.2 MB</div></div><div style="width:8px;height:8px;border-radius:50%;background:#647f5d;flex-shrink:0;"></div></div><div style="width:100%;background:#1e2226;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><div style="width:36px;height:36px;background:#2e3337;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${I_FILE}</div><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:white;margin-bottom:2px;">Soil_Analysis_Field7.pdf</div><div style="font-size:11px;color:rgba(255,255,255,.35);">PDF &middot; 840 KB</div></div><div style="width:8px;height:8px;border-radius:50%;background:#647f5d;flex-shrink:0;"></div></div><div style="width:100%;height:50px;border:1px solid rgba(255,255,255,.15);border-radius:9999px;display:flex;align-items:center;justify-content:center;gap:8px;">${I_UPLD}<span style="font-size:15px;font-weight:500;color:#bcbfc3;">Upload File</span></div></div>${sFoot('Back','Create Plot')}</div>`;
 }
 
 /* ─────────────────────────────────────────────────────
@@ -1449,7 +1661,7 @@ function rescale(html, z) {
 }
 
 
-/* LIGHT MODE ARCHIVED — see HTML comment block above <script> */
+/* LIGHT MODE ACTIVE — makeLight() live, toggle enabled, screenLight values restored */
 
 
 /* ── SNIPPET DATA ── */
@@ -1457,34 +1669,34 @@ const BG = BG_COLORS;
 
 const SNIPPETS = {
   core: [
-    {id:'s1',  title:'Suggestions',      screen:bSuggestions(),    screenLight:null, bg:BG.suggestions, hasVariations:false},
-    {id:'s2',  title:'Map',              screen:bMap(),            screenLight:null,            bg:BG.map},
-    {id:'s3',  title:'Chat',             screen:bChat(),           screenLight:null,           bg:BG.chat},
-    {id:'s4',  title:'Alerts',           screen:bAlerts(),         screenLight:null,         bg:BG.alerts},
-    {id:'s5',  title:'Daily Insights',   screen:bInsights(),       screenLight:null,       bg:BG.insights},
-    {id:'s6',  title:'Diagnosis',        screen:bDiagnosis(),      screenLight:null,      bg:BG.diagnosis},
+    {id:'s1',  title:'Suggestions',      screen:bSuggestions(),    screenLight:bSuggestionsLight(), bg:BG.suggestions, hasVariations:false},
+    {id:'s2',  title:'Map',              screen:bMap(),            screenLight:makeLight(bMap()),            bg:BG.map},
+    {id:'s3',  title:'Chat',             screen:bChat(),           screenLight:makeLight(bChat()),           bg:BG.chat},
+    {id:'s4',  title:'Alerts',           screen:bAlerts(),         screenLight:makeLight(bAlerts()),         bg:BG.alerts},
+    {id:'s5',  title:'Daily Insights',   screen:bInsights(),       screenLight:makeLight(bInsights()),       bg:BG.insights},
+    {id:'s6',  title:'Diagnosis',        screen:bDiagnosis(),      screenLight:makeLight(bDiagnosis()),      bg:BG.diagnosis},
   ],
   moments: [
-    {id:'s7',  title:'Weather Center',   screen:bWeather(),        screenLight:null,        bg:BG.alerts},
-    {id:'s8',  title:'Chat History',     screen:bChatHistory(),    screenLight:null,    bg:BG.chat},
-    {id:'s9',  title:'Prompt Picker',    screen:bPromptPicker(),   screenLight:null,   bg:BG.suggestions},
-    {id:'s10', title:'Quick Actions',    screen:bQuickActions(),   screenLight:null,   bg:BG.map},
-    {id:'s11', title:'Farm Selector',    screen:bFarmSelector(),   screenLight:null,   bg:BG.insights},
-    {id:'s12', title:'Plot Details',     screen:bPlotDetails(),    screenLight:null,    bg:BG.diagnosis},
+    {id:'s7',  title:'Weather Center',   screen:bWeather(),        screenLight:makeLight(bWeather()),        bg:BG.alerts},
+    {id:'s8',  title:'Chat History',     screen:bChatHistory(),    screenLight:makeLight(bChatHistory()),    bg:BG.chat},
+    {id:'s9',  title:'Prompt Picker',    screen:bPromptPicker(),   screenLight:makeLight(bPromptPicker()),   bg:BG.suggestions},
+    {id:'s10', title:'Quick Actions',    screen:bQuickActions(),   screenLight:makeLight(bQuickActions()),   bg:BG.map},
+    {id:'s11', title:'Farm Selector',    screen:bFarmSelector(),   screenLight:makeLight(bFarmSelector()),   bg:BG.insights},
+    {id:'s12', title:'Plot Details',     screen:bPlotDetails(),    screenLight:makeLight(bPlotDetails()),    bg:BG.diagnosis},
   ],
   creation: [
-    {id:'s13', title:'Plot Name',              screen:bPlotName(),        screenLight:null,        bg:BG.suggestions},
-    {id:'s14', title:'Crop Selection',         screen:bCropSelection(),   screenLight:null,   bg:BG.diagnosis},
-    {id:'s15', title:'Variety',                screen:bVariety(),         screenLight:null,         bg:BG.chat},
-    {id:'s16', title:'Plot Type',              screen:bPlotType(),        screenLight:null,        bg:BG.insights},
-    {id:'s17', title:'Soil Type',              screen:bSoilType(),        screenLight:null,        bg:BG.diagnosis},
-    {id:'s18', title:'Irrigation System',      screen:bIrrigation(),      screenLight:null,      bg:BG.map},
-    {id:'s19', title:'Plantation Date',        screen:bPlantationDate(),  screenLight:null,  bg:BG.chat},
-    {id:'s20', title:'Plant Density',          screen:bPlantDensity(),    screenLight:null,    bg:BG.alerts},
-    {id:'s21', title:'Historical & Target Yield', screen:bHistoricalYield(), screenLight:null, bg:BG.insights},
-    {id:'s22', title:'Target Markets',         screen:bTargetMarkets(),   screenLight:null,   bg:BG.suggestions},
-    {id:'s23', title:'Disease History',        screen:bDiseaseHistory(),  screenLight:null,  bg:BG.diagnosis},
-    {id:'s24', title:'Document Upload',        screen:bDocumentUpload(),  screenLight:null,  bg:BG.chat},
+    {id:'s13', title:'Plot Name',              screen:bPlotName(),        screenLight:makeLight(bPlotName()),        bg:BG.suggestions},
+    {id:'s14', title:'Crop Selection',         screen:bCropSelection(),   screenLight:makeLight(bCropSelection()),   bg:BG.diagnosis},
+    {id:'s15', title:'Variety',                screen:bVariety(),         screenLight:makeLight(bVariety()),         bg:BG.chat},
+    {id:'s16', title:'Plot Type',              screen:bPlotType(),        screenLight:makeLight(bPlotType()),        bg:BG.insights},
+    {id:'s17', title:'Soil Type',              screen:bSoilType(),        screenLight:makeLight(bSoilType()),        bg:BG.diagnosis},
+    {id:'s18', title:'Irrigation System',      screen:bIrrigation(),      screenLight:makeLight(bIrrigation()),      bg:BG.map},
+    {id:'s19', title:'Plantation Date',        screen:bPlantationDate(),  screenLight:makeLight(bPlantationDate()),  bg:BG.chat},
+    {id:'s20', title:'Plant Density',          screen:bPlantDensity(),    screenLight:makeLight(bPlantDensity()),    bg:BG.alerts},
+    {id:'s21', title:'Historical & Target Yield', screen:bHistoricalYield(), screenLight:makeLight(bHistoricalYield()), bg:BG.insights},
+    {id:'s22', title:'Target Markets',         screen:bTargetMarkets(),   screenLight:makeLight(bTargetMarkets()),   bg:BG.suggestions},
+    {id:'s23', title:'Disease History',        screen:bDiseaseHistory(),  screenLight:makeLight(bDiseaseHistory()),  bg:BG.diagnosis},
+    {id:'s24', title:'Document Upload',        screen:bDocumentUpload(),  screenLight:makeLight(bDocumentUpload()),  bg:BG.chat},
   ],
 };
 
@@ -1494,7 +1706,6 @@ const ZOOM_11 = 0.87 * 1.5;
 const FW_11   = Math.round(360 * ZOOM_11);
 const BLEED_11 = Math.round(FW_11 * 0.20);
 
-function rescale(html, z) { return html.replace('zoom:0.87', `zoom:${z}`); }
 
 function frameStyleVar(layout, zoom) {
   const base = 'position:absolute;border-radius:24px;overflow:hidden;background:#141719;';
@@ -1510,12 +1721,12 @@ function frameStyleVar(layout, zoom) {
 }
 
 const VAR_ITEMS = [
-  {label:'Zoom · 3:2',      cls:'slide-32', screen:rescale(bSuggestions(), ZOOM_2X), screenLight:null, layout:'zoom',      zoom:'2x'},
-  {label:'Zoom · 1:1',      cls:'slide-11', screen:rescale(bSuggestions(), ZOOM_11), screenLight:null, layout:'zoom',      zoom:'11'},
-  {label:'Corner BR · 3:2', cls:'slide-32', screen:rescale(bSuggestions(), ZOOM_2X), screenLight:null, layout:'corner-br', zoom:'2x'},
-  {label:'Corner BR · 1:1', cls:'slide-11', screen:rescale(bSuggestions(), ZOOM_11), screenLight:null, layout:'corner-br', zoom:'11'},
-  {label:'Corner BL · 3:2', cls:'slide-32', screen:rescale(bSuggestions(), ZOOM_2X), screenLight:null, layout:'corner-bl', zoom:'2x'},
-  {label:'Corner BL · 1:1', cls:'slide-11', screen:rescale(bSuggestions(), ZOOM_11), screenLight:null, layout:'corner-bl', zoom:'11'},
+  {label:'Zoom · 3:2',      cls:'slide-32', screen:rescale(bSuggestions(), ZOOM_2X), screenLight:makeLight(rescale(bSuggestions(), ZOOM_2X)), layout:'zoom',      zoom:'2x'},
+  {label:'Zoom · 1:1',      cls:'slide-11', screen:rescale(bSuggestions(), ZOOM_11), screenLight:makeLight(rescale(bSuggestions(), ZOOM_11)), layout:'zoom',      zoom:'11'},
+  {label:'Corner BR · 3:2', cls:'slide-32', screen:rescale(bSuggestions(), ZOOM_2X), screenLight:makeLight(rescale(bSuggestions(), ZOOM_2X)), layout:'corner-br', zoom:'2x'},
+  {label:'Corner BR · 1:1', cls:'slide-11', screen:rescale(bSuggestions(), ZOOM_11), screenLight:makeLight(rescale(bSuggestions(), ZOOM_11)), layout:'corner-br', zoom:'11'},
+  {label:'Corner BL · 3:2', cls:'slide-32', screen:rescale(bSuggestions(), ZOOM_2X), screenLight:makeLight(rescale(bSuggestions(), ZOOM_2X)), layout:'corner-bl', zoom:'2x'},
+  {label:'Corner BL · 1:1', cls:'slide-11', screen:rescale(bSuggestions(), ZOOM_11), screenLight:makeLight(rescale(bSuggestions(), ZOOM_11)), layout:'corner-bl', zoom:'11'},
 ];
 
 function buildVariations() {
@@ -2306,7 +2517,7 @@ function initWeatherCharts() {
     </div>`;
   }
 
-  const amber='oklch(0.82 0.135 72)', blue='oklch(0.81 0.108 232)';
+  const defaultAmber='oklch(0.82 0.135 72)', defaultBlue='oklch(0.81 0.108 232)';
   const hr=new Date().getHours();
   const temp=h.temperature_2m, wind=h.windspeed_10m, humidity=h.relativehumidity_2m;
   const dew=h.dewpoint_2m, uv=h.uv_index, eto=h.et0_fao_evapotranspiration;
@@ -2318,31 +2529,37 @@ function initWeatherCharts() {
     return `<div class="wx-bar" style="height:${ht}%;background:${col};"></div>`;
   }).join('');
 
-  const flatLine=`<path d="M0,68 L200,68" fill="none" stroke="${blue}" stroke-width="0.5"/>`;
-
   const hours=['12AM','1AM','2AM','3AM','4AM','5AM','6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM','8PM','9PM','10PM','11PM'];
 
-  document.getElementById('wx-grid').innerHTML =
-    card('Temperature',`${temp[hr].toFixed(1)}°`,makePath(temp,amber,'g-t'),true,'amber',temp,'°')+
-    card('ETo',`${eto.reduce((a,b)=>a+b,0).toFixed(3)}mm`,makePath(eto,blue,'g-e'),true,'',eto,'mm')+
-    card('Wind',`${wind[hr].toFixed(0)} km/h`,makePath(wind,blue,'g-w'),true,'',wind,' km/h')+
-    card('Precipitation','0mm',flatLine)+
-    card('Humidity',`${humidity[hr]}%`,makePath(humidity,blue,'g-h',true),true,'',humidity,'%')+
-    card('Dew Point',`${dew[hr].toFixed(1)}°`,makePath(dew,blue,'g-d'),true,'',dew,'°')+
-    card('UV Index',`${uv[hr]}`,makePath(uv,amber,'g-u'),true,'amber',uv,'')+
-    `<div class="wx-card">
-      <div class="wx-card-label">Sunrise</div>
-      <div class="wx-card-value">7:09AM</div>
-      <div class="wx-sunrise-inner">
-        <div class="wx-sunrise-sub">Sunset 7:36PM</div>
-      </div>
-    </div>`+
-    `<div class="wx-card">
-      <div class="wx-card-label">Spray Window</div>
-      <div class="wx-card-value red">Avoid</div>
-      <svg class="wx-chart" viewBox="0 0 200 72" preserveAspectRatio="none">${makePath(wind,'oklch(0.61 0.195 22)','g-sp')}</svg>
-      <div class="wx-axis"><span>12AM</span><span>6AM</span><span>12PM</span><span>6PM</span></div>
-    </div>`;
+  document.querySelectorAll('.wx-grid').forEach((grid, gi) => {
+    const isLight = grid.closest('.row-light') !== null;
+    const amber = isLight ? 'oklch(0.55 0.155 72)'  : defaultAmber;
+    const blue  = isLight ? 'oklch(0.42 0.148 232)' : defaultBlue;
+    const flatLine=`<path d="M0,68 L200,68" fill="none" stroke="${blue}" stroke-width="0.5"/>`;
+    const suffix = isLight ? '-L' : '';
+
+    grid.innerHTML =
+      card('Temperature',`${temp[hr].toFixed(1)}°`,makePath(temp,amber,`g-t${gi}`),true,'amber',temp,'°')+
+      card('ETo',`${eto.reduce((a,b)=>a+b,0).toFixed(3)}mm`,makePath(eto,blue,`g-e${gi}`),true,'',eto,'mm')+
+      card('Wind',`${wind[hr].toFixed(0)} km/h`,makePath(wind,blue,`g-w${gi}`),true,'',wind,' km/h')+
+      card('Precipitation','0mm',flatLine)+
+      card('Humidity',`${humidity[hr]}%`,makePath(humidity,blue,`g-h${gi}`,true),true,'',humidity,'%')+
+      card('Dew Point',`${dew[hr].toFixed(1)}°`,makePath(dew,blue,`g-d${gi}`),true,'',dew,'°')+
+      card('UV Index',`${uv[hr]}`,makePath(uv,amber,`g-u${gi}`),true,'amber',uv,'')+
+      `<div class="wx-card">
+        <div class="wx-card-label">Sunrise</div>
+        <div class="wx-card-value">7:09AM</div>
+        <div class="wx-sunrise-inner">
+          <div class="wx-sunrise-sub">Sunset 7:36PM</div>
+        </div>
+      </div>`+
+      `<div class="wx-card">
+        <div class="wx-card-label">Spray Window</div>
+        <div class="wx-card-value red">Avoid</div>
+        <svg class="wx-chart" viewBox="0 0 200 72" preserveAspectRatio="none">${makePath(wind,'oklch(0.61 0.195 22)',`g-sp${gi}`)}</svg>
+        <div class="wx-axis"><span>12AM</span><span>6AM</span><span>12PM</span><span>6PM</span></div>
+      </div>`;
+  });
 
   // Freeze indicators at 6AM (index 6) on Wind and Humidity
   const freezeIdx = 6; // 6AM
@@ -2387,9 +2604,9 @@ function initWeatherCharts() {
 /* ── RENDER WEB APP ── */
 function buildWebAppSection(key, sNum) {
   const s = WA_SCREENS[key];
-  const lightScreen = s.html; // no light variant for web app
+  const lightHtml = makeLight(s.html);
   const wideDark  = `<div class="ratio-section"><div class="ratio-section-title">Wide</div><div class="ratio-tag">16:9</div><div class="slide slide-full" style="background:#FAE8E8;overflow:hidden;"><div class="webapp-scale" id="scale-${key}">${s.html}</div></div></div>`;
-  const wideLight = wideDark;
+  const wideLight = `<div class="ratio-section"><div class="ratio-section-title">Wide</div><div class="ratio-tag">16:9</div><div class="slide slide-full" style="background:#FAE8E8;overflow:hidden;"><div class="webapp-scale" id="scale-${key}-light">${lightHtml}</div></div></div>`;
   const texturePlaceholder = `<div class="ratio-section"><div class="ratio-section-title">Texture</div><div id="texture-${key}" style="color:rgba(255,255,255,0.30);font-size:13px;font-family:'Nunito Sans',sans-serif;">Loading…</div></div>`;
   return `<div class="snip-section" id="sec-${key}">
     <div class="snip-heading"><span class="snip-title">${s.title}</span><span class="snip-num">${sNum}</span></div>
@@ -2443,7 +2660,12 @@ function showSnip(cat, id, btn) {
 
 
 
-/* THEME TOGGLE LOCKED — Head of Brand only */
+/* ── THEME TOGGLE ── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isLight = html.getAttribute('data-theme') === 'light';
+  html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+}
 
 window.addEventListener('scroll', () => {
   document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20);
